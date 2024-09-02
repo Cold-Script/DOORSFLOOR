@@ -1,3 +1,43 @@
+local function Billboard(child, name, color, title)
+    local Billboard = Instance.new("BillboardGui")
+    Billboard.Active = true
+    Billboard.AlwaysOnTop = true
+    Billboard.ClipsDescendants = true
+    Billboard.LightInfluence = 1
+    Billboard.Size = UDim2.new(100, 0, 100, 0)
+    Billboard.ResetOnSpawn = false
+    Billboard.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Billboard.Parent = child
+    Billboard.Name = title
+    local Title = Instance.new("TextLabel")
+    Title.Text = name
+    Title.TextSize = 14
+    Title.Font = "Oswald"
+    Title.TextColor3 = color
+    Title.BackgroundColor3 = Color3.new(1, 1, 1)
+    Title.BackgroundTransparency = 1
+    Title.BorderColor3 = Color3.new(0, 0, 0)
+    Title.BorderSizePixel = 0
+    Title.Size = UDim2.new(1, 0, 1, 0)
+    Title.Visible = true
+    Title.Parent = Billboard
+    local uistroke = Instance.new("UIStroke")
+    uistroke.Thickness = 1
+    uistroke.Parent = Title
+end
+local function Highlight(child, name, color, title)
+    Billboard(child, name, color, title)
+    local Highlight = Instance.new("Highlight")
+    Highlight.Parent = child
+    Highlight.Adornee = child
+    Highlight.FillTransparency = 0.65
+    Highlight.OutlineTransparency = 0
+    Highlight.Name = title
+    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.FillColor = color
+end
+
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -73,7 +113,7 @@ Group.Right2:AddToggle('',{
             Text = "Anti Figure",
             Callback = function(value)
 _G.AntiFigure = value               
-while _G.AntiFigure do wait()
+while _G.AntiFigure do wait(1.5)
  for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "FigureRig" then
 v.CanCollide = false
@@ -85,7 +125,7 @@ Group.Right2:AddToggle('',{
             Text = "Anti Giggle",
             Callback = function(value)
 _G.AntiGiggld = value               
-while _G.AntiGiggle do wait()
+while _G.AntiGiggle do wait(1.5)
  for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "GiggleCelling" then
 v.CanCollide = false
@@ -149,5 +189,107 @@ task.spawn(function()
             workspace.CurrentCamera.FieldOfView = 70
         end
     end)
-
-    
+Group.Right3:AddToggle('',{
+    Text = "Doors ESP", 
+    Callback = function(value)
+if value then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Door" and v.Parent.Name == "Door" then
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+end
+end
+ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Door" and v.Parent.Name == "Door" then
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+end
+end
+end)
+else
+ESP1:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "DoorESP" then
+v:Destroy()
+end
+end
+end 
+end})
+Group.Right3:AddToggle('',{
+    Text = "Generator ESP", 
+    Callback = function(value)
+if value then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesGenerator" then
+Highlight(v, "Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+end
+end
+ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesGenerator" then
+Highlight(v, "Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+end
+end
+end)
+else
+ESP6:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesESP1" then
+v:Destroy()
+end
+end
+end 
+end})    
+Group.Right3:AddToggle('',{
+    Text = "Box ESP", 
+    Callback = function(value)
+if value then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Toolbox" then
+Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+end
+end
+ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Toolbox" then
+Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+end
+end
+end)
+else
+ESP7:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesESP2" then
+v:Destroy()
+end
+end
+end 
+end})
+Group.Right3:AddToggle('',{
+    Text = "Fuses ESP", 
+    Callback = function(value)
+if value then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Fuse" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "FuseESP")
+elseif v.Name == "Fuses" then
+Highlight(v, "Fuses", Color3.fromRGB(80,255,200), "FuseESP")                        
+end
+end
+ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Fuse" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "FuseESP")
+elseif v.Name == "Fuses" then
+Highlight(v, "Fuses", Color3.fromRGB(80,255,200), "FuseESP")                        
+end
+end
+end)
+else
+ESP1:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "FuseESP" then
+v:Destroy()
+end
+end
+end 
+end})
