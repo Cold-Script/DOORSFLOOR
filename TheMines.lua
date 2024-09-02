@@ -37,7 +37,49 @@ local function Highlight(child, name, color, title)
     Highlight.OutlineColor = Color3.new(1,1,1)
     Highlight.FillColor = color
 end
-
+local function Billboard2(child, name, color, title)
+    local Billboard = Instance.new("BillboardGui")
+    Billboard.Active = true
+    Billboard.AlwaysOnTop = true
+    Billboard.ClipsDescendants = true
+    Billboard.LightInfluence = 1
+    Billboard.Size = UDim2.new(100, 0, 100, 0)
+    Billboard.ResetOnSpawn = false
+    Billboard.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Billboard.Parent = child
+    Billboard.Name = title
+    local Title = Instance.new("TextLabel")
+    Title.Text = name
+    Title.TextSize = 14
+    Title.Font = "Oswald"
+    Title.TextColor3 = color
+    Title.BackgroundColor3 = Color3.new(1, 1, 1)
+    Title.BackgroundTransparency = 1
+    Title.BorderColor3 = Color3.new(0, 0, 0)
+    Title.BorderSizePixel = 0
+    Title.Size = UDim2.new(1, 0, 1, 0)
+    Title.Visible = true
+    Title.Parent = Billboard
+    local uistroke = Instance.new("UIStroke")
+    uistroke.Thickness = 1
+    uistroke.Parent = Title
+end
+local function Highlight2(child, name, color, title)
+    Billboard(child, name, color, title)
+    local Highlight = Instance.new("Highlight")
+    Highlight.Parent = child
+    Highlight.Adornee = child
+    Highlight.FillTransparency = 0.65
+    Highlight.OutlineTransparency = 0
+    Highlight.Name = title
+    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.FillColor = color
+    if child:IsA("Part") then
+        child.Color = Color3.new(1,1,1)
+        child.Transparency = 0
+    end
+end
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -265,31 +307,43 @@ end
 end 
 end})
 Group.Right3:AddToggle('',{
-    Text = "Fuses ESP", 
+    Text = "Entity ESP", 
     Callback = function(value)
 if value then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Fuse" then
-Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "FuseESP")
-elseif v.Name == "Fuses" then
-Highlight(v, "Fuses", Color3.fromRGB(80,255,200), "FuseESP")                        
+if v.Name == "RushMoving" then
+Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "AmbushMoving" then
+Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "FigureRig" then
+Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "GiggleCeiling" then
+Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "SeekNewClone" then
+Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                       
 end
 end
-ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Fuse" then
-Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "FuseESP")
-elseif v.Name == "Fuses" then
-Highlight(v, "Fuses", Color3.fromRGB(80,255,200), "FuseESP")                        
+if v.Name == "RushMoving" then
+Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "AmbushMoving" then
+Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "FigureRig" then
+Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "GiggleCeiling" then
+Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "EntityESP")
+elseif v.Name == "SeekNewClone" then
+Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                                                      
 end
 end
 end)
 else
-ESP1:Disconnect()
+ESP8:Disconnect()
 for _, v in pairs(workspace:GetDescendants()) do
-if v.Name == "FuseESP" then
+if v.Name == "EntityESP" then
 v:Destroy()
 end
-end
+                end
 end 
 end})
