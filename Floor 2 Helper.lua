@@ -1,5 +1,3 @@
-version = 1.0
-
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -8,13 +6,13 @@ local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
 local Options = getgenv().Options
 
 local Window = lib:CreateWindow({
-    Title = 'Script Floor 2 Helper | v' .. version,
+    Title = 'Script Floor 2 Helper | v1.0',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
     MenuFadeTime = 0
 })
-_wait = task.wait
+
 local Tabs = {
   Cheat = Window:AddTab("Players"),
   Visual = Window:AddTab("Visual"),
@@ -35,7 +33,7 @@ Group.Left1:AddButton({
     DoubleClick = true,
     Func = function()
 Library:Unload()
-_wait()
+wait()
 lib:Unload()
 end})
 Group.Right1:AddLabel("Credits by rechedmcvn")
