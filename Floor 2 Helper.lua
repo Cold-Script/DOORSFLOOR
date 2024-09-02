@@ -20,10 +20,10 @@ local Window = lib:CreateWindow({
 })
 _wait = task.wait
 local Tabs = {
-  Main = Window:AddTab("Main"),
   Cheat = Window:AddTab("Players"),
   Visual = Window:AddTab("Visual"),
-  Configs = Window:AddTab("Other")
+  Configs = Window:AddTab("Other"),
+  Main = Window:AddTab("Credits")
 }
 local Group = {
   Left1 = Tabs.Main:AddLeftGroupbox('GUI'),
@@ -32,7 +32,7 @@ local Group = {
   Left3 = Tabs.Visual:AddLeftGroupbox("Disabled"),
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
-  Right3 = Tabs.Visual:AddRightGroupbox("ESP')
+  Right3 = Tabs.Visual:AddRightGroupbox("ESP")
 }
 Group.Left1:AddButton({
     Text = "Unload Library (Kill GUI)",
@@ -99,10 +99,49 @@ v.CanCollide = false
            end
         end                
     end})
-
-
-
-
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Groupbox.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
+Group.Left4:AddSlider('',{
+    Text = 'Fov',
+    Default = 120,
+    Min = 70,
+    Max = 120,
+    Rounding = 1,
+    Compact = true,
+    Callback = function(v)
+_G.Fov = true
+        while _G.Fov do wait()
+          workspace.CurrentCamera.FieldOfView = v
+       end
+    end
+})
+Group.Left4:AddToggle('',{
+    Text = 'FullBright',
+    Default = false,
+    Tooltip = 'Turns the room bright',
+    Callback = function(v)
+        if v then
+            game.Lighting.Brightness = 3
+            game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
+            game.Lighting.GlobalShadows = false
+        else
+            game.Lighting.Brightness = 1
+            game.Lighting.OutdoorAmbient = Color3.new(0,0,0)
+            game.Lighting.GlobalShadows = true
+       end
+    end
+})
+Group.Left4:AddToggle('',{
+    Text = 'No Fog',
+    Default = false,
+    Tooltip = 'Turns the room nofog',
+    Callback = function(v)
+        if v then
+            game.Lighting.FogEnd = 9e9
+        else
+            game.Lighting.FogEnd = 200
+       end
+    end
+})
 
 
     
