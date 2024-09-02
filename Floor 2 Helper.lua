@@ -100,17 +100,24 @@ v.CanCollide = false
         end                
     end})
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Groupbox.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
-Group.Left4:AddSlider('',{
-    Text = 'Fov',
+Group.Left4:AddToggle('', {
+    Text = 'Enabled FOV',
+    Default = false,
+    Tooltip = 'changes fov',
+    Callback = function(v)
+        flags.fov = v
+    end
+})
+
+Group.Left4:AddSlider('', {
+    Text = 'FOV',
     Default = 120,
     Min = 70,
     Max = 120,
     Rounding = 1,
     Compact = true,
     Callback = function(v)
-        while wait() do
-          workspace.CurrentCamera.FieldOfView = v
-       end
+        values.fieldOfView = v
     end
 })
 Group.Left4:AddToggle('',{
@@ -141,6 +148,12 @@ Group.Left4:AddToggle('',{
        end
     end
 })
-
+task.spawn(function()
+        if flags.fov then
+            workspace.CurrentCamera.FieldOfView = values.fieldOfView
+        else
+            workspace.CurrentCamera.FieldOfView = 70
+        end
+    end)
 
     
