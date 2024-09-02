@@ -1,7 +1,3 @@
-if _G.executor then
-print("lol")
-end
-_G.executor = true
 version = 1.0
 
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
