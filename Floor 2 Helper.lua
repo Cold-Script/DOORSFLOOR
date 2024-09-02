@@ -108,8 +108,7 @@ Group.Left4:AddSlider('',{
     Rounding = 1,
     Compact = true,
     Callback = function(v)
-_G.Fov = true
-        while _G.Fov do wait()
+        while wait() do
           workspace.CurrentCamera.FieldOfView = v
        end
     end
