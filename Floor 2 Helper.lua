@@ -27,9 +27,11 @@ local Tabs = {
 }
 local Group = {
   Left1 = Tabs.Main:AddLeftGroupbox('GUI'),
-  Right1 = Tabs.Main:AddRightGroupbox('Create'),
+  Right1 = Tabs.Main:AddRightGroupbox('Credits'),
+  Left2 = Tabs.Cheat:AddLeftGroupbox('Players'),
+  Right2 = Tabs.Cheat:AddRightGroupbox('Misc Player')
 }
-Tabs.Main:AddButton({
+Group.Left1:AddButton({
     Text = "Unload Library (Kill GUI)",
     DoubleClick = true,
     Func = function()
@@ -37,6 +39,18 @@ Library:Unload()
 _wait()
 lib:Unload()
 end})
+Group.Right1:AddLabel("Credits by rechedmcvn")
+Group.Left2:AddSlider('',{
+    Text = "Speed Boost",
+    Default = 25,
+    Min = 16,
+    Max = 25,
+    Rounding = 1,
+    Compact = true,
+    Callback = function(v)
+        values.speedV = v
+    end
+})
 
 
 
