@@ -34,7 +34,7 @@ local function Highlight(child, name, color, title)
     Highlight.OutlineTransparency = 0.5
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.OutlineColor = color
     Highlight.FillColor = color
 end
 local function Billboard2(child, name, color, title)
@@ -73,7 +73,7 @@ local function Highlight2(child, name, color, title)
     Highlight.OutlineTransparency = 0.5
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.OutlineColor = color
     Highlight.FillColor = color
     if child:IsA("Part") then
         child.Color = Color3.new(1,1,1)
@@ -121,15 +121,15 @@ end})
 Group.Right1:AddLabel("Credits by rechedmcvn")
 Group.Left2:AddSlider('',{
     Text = "Speed Boost",
-    Default = 1,
-    Min = 1,
-    Max = 6,
+    Default = 16,
+    Min = 16,
+    Max = 21,
     Rounding = 1,
     Compact = true,
     Callback = function(v)
-    while wait() do
+    game:GetService("RunService").RenderStepped:Connect(function()
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-            end
+            end)
     end
 })
 Group.Left2:AddButton({
@@ -188,9 +188,9 @@ Group.Left4:AddSlider('', {
     Rounding = 1,
     Compact = true,
     Callback = function(v)
-        while wait() do
+        game:GetService("RunService").RenderStepped:Connect(function()
                 workspace.CurrentCamera.FieldOfView = v
-            end        
+            end)        
     end
 })
 Group.Left4:AddToggle('',{
