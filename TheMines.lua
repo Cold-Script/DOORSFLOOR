@@ -31,7 +31,7 @@ local function Highlight(child, name, color, title)
     Highlight.Parent = child
     Highlight.Adornee = child
     Highlight.FillTransparency = 0.5
-    Highlight.OutlineTransparency = 0.5
+    Highlight.OutlineTransparency = 0
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = color
@@ -70,7 +70,7 @@ local function Highlight2(child, name, color, title)
     Highlight.Parent = child
     Highlight.Adornee = child
     Highlight.FillTransparency = 0.5
-    Highlight.OutlineTransparency = 0.5
+    Highlight.OutlineTransparency = 0
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = color
@@ -166,25 +166,13 @@ game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
 Group.Left3:AddToggle("",{Text = "Disabled Light",Default = false,Tooltip = "No Light",Callback = function(NL)_G.MSHNL = NL ;end})  
 Group.Right2:AddToggle("",{Text="Anti-Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});
 Group.Right2:AddToggle('',{
-            Text = "Anti Figure",
-            Callback = function(value)
-_G.AntiFigure = value               
-while _G.AntiFigure do wait(1.5)
- for _,v in pairs(workspace:GetDescendants()) do                   
-if v.Name == "FigureRig" then
-v.CanCollide = false
-              end
-           end
-       end
-   end})                    
-Group.Right2:AddToggle('',{
             Text = "Anti Giggle",
             Callback = function(value)
 _G.AntiGiggld = value               
 while _G.AntiGiggle do wait(1.5)
  for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "GiggleCelling" then
-v.CanCollide = false
+v:Destroy()
               end
            end
         end                
@@ -298,7 +286,7 @@ end
 end 
 end})    
 Group.Right3:AddToggle('',{
-    Text = "Fuss ESP", 
+    Text = "Fuse ESP", 
     Callback = function(value)
 if value then
  wait(1)               
@@ -400,7 +388,7 @@ Group.Right4:AddToggle('',{
 _G.Fuse = v
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
-if Distance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+if Distance(v:FindFirstChildWhichIsA("BasePart")) and _G.Fuse then
 fireproximityprompt(v.ModulePrompt)
 end
 end
