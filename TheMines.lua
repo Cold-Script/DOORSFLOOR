@@ -164,7 +164,16 @@ v:Destroy()
            end
         end                
     end})
-
+Group.Right2:AddToggle('',{
+            Text = "Anti Screech",
+            Callback = function(value)
+if value then
+Screech = game:GetService("ReplicatedStorage").Entities.Screech
+Screech:Destroy()
+			else
+Screech:Disconnect()
+			end			
+    end})
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Group.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
 
 
