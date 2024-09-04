@@ -109,8 +109,6 @@ local Window = lib:CreateWindow({
 local Tabs = {
   Cheat = Window:AddTab("Players"),
   Visual = Window:AddTab("Visual"),
-  Configs = Window:AddTab("Other"),
-  Main = Window:AddTab("Credits")
 }
 local Group = {
   Left1 = Tabs.Main:AddLeftGroupbox('GUI'),
@@ -120,17 +118,7 @@ local Group = {
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
-  Right4 = Tabs.Visual:AddRightGroupbox("Auto Interact"),
 }
-Group.Left1:AddButton({
-    Text = "Unload Library (Kill GUI)",
-    DoubleClick = true,
-    Func = function()
-Library:Unload()
-wait()
-lib:Unload()
-end})
-Group.Right1:AddLabel("Credits by rechedmcvn")
 Group.Left2:AddSlider('',{
     Text = "Speed Boost",
     Default = 16,
@@ -165,8 +153,8 @@ workspace.FallenPartsDestroyHeight = 0 / 0
 Group.Left3:AddToggle('',{
             Text = "Disabled Seek Trigger",
             Callback = function(value)
-_G.AntiGiggld = value               
-while _G.AntiGiggle do wait(1)
+_G.Trigger = value               
+while _G.Trigger do wait(1)
  for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "TriggerEventCollision" then
 v:Destroy()
@@ -181,9 +169,9 @@ Group.Right2:AddToggle("",{Text="Anti-Halt",Default=false,Tooltip="Anti Halt",Ca
 Group.Right2:AddToggle('',{
             Text = "Anti Giggle",
             Callback = function(value)
-_G.AntiGiggld = value               
+_G.AntiGiggle = value               
 while _G.AntiGiggle do wait(1)
- for _,v in pairs(workspace:GetDescendants()) do                   
+for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "GiggleCelling" then
 v:Destroy()
               end
@@ -413,14 +401,14 @@ Group.Right3:AddToggle('',{
 if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Locker_Big" then
+if v.Name == "Locker_Large" then
 Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Locker_Big" then
+if v.Name == "Locker_Large" then
 Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
@@ -477,15 +465,4 @@ end
                 end
 end 
 end})
-Group.Right4:AddToggle('',{
-        Text = "Auto Interact Fuse",
-        Callback = function(v)
-_G.Fuse = v
-for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "FuseObtain" then
-if Distance(v:FindFirstChildWhichIsA("BasePart")) and _G.Fuse then
-fireproximityprompt(v.ModulePrompt)
-end
-end
-end
-end})
+
