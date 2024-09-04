@@ -111,8 +111,6 @@ local Tabs = {
   Visual = Window:AddTab("Visual"),
 }
 local Group = {
-  Left1 = Tabs.Main:AddLeftGroupbox('GUI'),
-  Right1 = Tabs.Main:AddRightGroupbox('Credits'),
   Left2 = Tabs.Cheat:AddLeftGroupbox('Players'),
   Left3 = Tabs.Visual:AddLeftGroupbox("Disabled"),
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
