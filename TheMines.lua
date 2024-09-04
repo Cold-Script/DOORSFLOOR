@@ -99,7 +99,7 @@ local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
 local Options = getgenv().Options
 
 local Window = lib:CreateWindow({
-    Title = 'Script Floor 2 Helper | v1.0',
+    Title = '(YOU HUB) Script Floor 2 Helper | v1.0',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
@@ -210,7 +210,7 @@ Group.Left4:AddToggle('',{
 Group.Left4:AddToggle('',{
 		Text = "Notify Entities",
 		Callback = function(v)
-if Value then
+if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
