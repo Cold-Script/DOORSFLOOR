@@ -207,6 +207,40 @@ Group.Left4:AddToggle('',{
        end
     end
 })
+Group.Left4:AddToggle('',{
+		Text = "Notify Entities",
+		Callback = function(v)
+if Value then
+			EntityNotifier = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Eyes" then
+					lib:Notify("Eyes has spawned, dont look into its eyes!")
+					
+				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+					lib:Notify("Rush has spawn, find the locker hide now!")
+					
+				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+					lib:Notify("Ambush has spawn, find the locker hide now!")
+
+				elseif child.Name == "FigureRig" then
+					lib:Notify("Figure has spawn, be careful and don't make any noise!")
+				elseif child.Name == "GiggleCeiling" then
+					lib:Notify("Giggle has spawn, please be careful with the ceiling!")
+									
+				end
+						
+			end)
+			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Screech" then
+					lib:Notify("Screech has me, Look its now for me")
+				end
+			end)
+		else
+			EntityNotifier:Disconnect()
+			EntityNotifierScreech:Disconnect()
+			end
+		end})			
 Group.Right3:AddToggle('',{
     Text = "Doors ESP", 
     Callback = function(value)
@@ -386,21 +420,21 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP2")
+Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP2")
+Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
 end
 end
 end)
 else
 ESP7:Disconnect()
 for _, v in pairs(workspace:GetDescendants()) do
-if v.Name == "MinesESP2" then
+if v.Name == "MinesESP7" then
 v:Destroy()
 end
 end
