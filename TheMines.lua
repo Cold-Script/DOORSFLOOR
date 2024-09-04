@@ -117,19 +117,7 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
 }
-Group.Left2:AddSlider('',{
-    Text = "Speed Boost",
-    Default = 16,
-    Min = 16,
-    Max = 21,
-    Rounding = 1,
-    Compact = true,
-    Callback = function(v)
-    game:GetService("RunService").RenderStepped:Connect(function()
-                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-            end)
-    end
-})
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.speedkuys then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=_G.SelectBootst;end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(16 + 0))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=17;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(18))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=35;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(0 +(18 + 1)))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=2.5 + 17.5 ;elseif _G.SpeedHack then local v796=31 + 4 + game.Players.LocalPlayer.Character.Humanoid:GetAttribute("SpeedBoost") ;if (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed<=v796) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed+=_G.SelectBoots end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=1,Min=0 -0 ,Max=1,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;Group.Left2:AddToggle("MyToggle",{Text="Enable Speed Boots",Default=false,Tooltip="Speed Boots",Callback=function(v82)_G.SpeedHack=v82;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end end});
 Group.Left2:AddButton({
         Text = "Reset Character",
         DoubleClick = true,
@@ -180,19 +168,8 @@ v:Destroy()
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Group.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
 
 
-Group.Left4:AddSlider('', {
-    Text = 'FOV',
-    Default = 70,
-    Min = 70,
-    Max = 120,
-    Rounding = 1,
-    Compact = true,
-    Callback = function(v)
-        game:GetService("RunService").RenderStepped:Connect(function()
-                workspace.CurrentCamera.FieldOfView = v
-            end)        
-    end
-})
+Group.Left4:AddSlider("",{Text="Field of View ",Default=120,Min=1226 -(1074 + 82) ,Max=120,Rounding=0 -0 ,Compact=true,Callback=function(v81)_G.FieldOfViewe=v81;end});
+Group.Left4:AddToggle("",{Text="Enable Field of View",Default=false,Tooltip="Field of View Hack",Callback=function(v83)local v84=1455 -(990 + 465) ;while true do if (0==v84) then if (v83==true) then local v449=0 + 0 ;local v450;while true do if (0==v449) then v450=game:GetService("TweenService");v450:Create(game.Workspace.CurrentCamera,TweenInfo.new(0.9),{FieldOfView=_G.FieldOfViewe}):Play();break;end end elseif (v83==false) then local v621=game:GetService("TweenService");v621:Create(game.Workspace.CurrentCamera,TweenInfo.new(0.9),{FieldOfView=31 + 39 }):Play();end wait(0.8 + 0 );v84=3 -2 ;end if (v84==1) then _G.FieldOfView=v83;break;end end end})
 Group.Left4:AddToggle('',{
     Text = 'FullBright',
     Default = false,
