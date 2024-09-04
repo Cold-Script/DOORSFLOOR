@@ -80,6 +80,17 @@ local function Highlight2(child, name, color, title)
         child.Transparency = 0
     end
 end
+function Distance(part, extra)
+	if not extra then extra = 15 end
+	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
+		return false
+	end
+	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+	if distanceToPart <= extra then
+		return true
+	end
+	return false
+end
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -108,7 +119,8 @@ local Group = {
   Left3 = Tabs.Visual:AddLeftGroupbox("Disabled"),
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
-  Right3 = Tabs.Visual:AddRightGroupbox("ESP")
+  Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
+  Right4 = Tabs.Visual:AddRightGroupboc("Auto Interact"),
 }
 Group.Left1:AddButton({
     Text = "Unload Library (Kill GUI)",
@@ -381,4 +393,16 @@ v:Destroy()
 end
                 end
 end 
+end})
+Group.Right4:AddToggle('',{
+        Text = "Auto Interact Fuse",
+        Callback = function(v)
+_G.Fuse = v
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "FuseObtain" then
+if Distance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+fireproximityprompt(v.ModulePrompt)
+end
+end
+end
 end})
