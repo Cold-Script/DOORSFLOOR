@@ -30,8 +30,8 @@ local function Highlight(child, name, color, title)
     local Highlight = Instance.new("Highlight")
     Highlight.Parent = child
     Highlight.Adornee = child
-    Highlight.FillTransparency = 0.65
-    Highlight.OutlineTransparency = 0
+    Highlight.FillTransparency = 0.5
+    Highlight.OutlineTransparency = 0.5
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = Color3.new(1,1,1)
@@ -69,8 +69,8 @@ local function Highlight2(child, name, color, title)
     local Highlight = Instance.new("Highlight")
     Highlight.Parent = child
     Highlight.Adornee = child
-    Highlight.FillTransparency = 0.65
-    Highlight.OutlineTransparency = 0
+    Highlight.FillTransparency = 0.5
+    Highlight.OutlineTransparency = 0.5
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = Color3.new(1,1,1)
@@ -126,8 +126,10 @@ Group.Left2:AddSlider('',{
     Max = 6,
     Rounding = 1,
     Compact = true,
-    Callback = function(Speed)
-    game.Players.LocalPlayer.Character.Humanoid:SetAttribute('SpeedBoostBehind', Speed)    
+    Callback = function(v)
+    while wait() do
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+            end
     end
 })
 Group.Left2:AddButton({
@@ -176,24 +178,19 @@ v.CanCollide = false
         end                
     end})
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Group.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
-Group.Left4:AddToggle('', {
-    Text = 'Enabled FOV',
-    Default = false,
-    Tooltip = 'changes fov',
-    Callback = function(v)
-        flags.fov = v
-    end
-})
+
 
 Group.Left4:AddSlider('', {
     Text = 'FOV',
-    Default = 120,
+    Default = 70,
     Min = 70,
     Max = 120,
     Rounding = 1,
     Compact = true,
     Callback = function(v)
-        values.fieldOfView = v
+        while wait() do
+                workspace.CurrentCamera.FieldOfView = v
+            end        
     end
 })
 Group.Left4:AddToggle('',{
@@ -224,23 +221,18 @@ Group.Left4:AddToggle('',{
        end
     end
 })
-task.spawn(function()
-        if flags.fov then
-            workspace.CurrentCamera.FieldOfView = values.fieldOfView
-        else
-            workspace.CurrentCamera.FieldOfView = 70
-        end
-    end)
 Group.Right3:AddToggle('',{
     Text = "Doors ESP", 
     Callback = function(value)
 if value then
+ wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end
 ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+ wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
@@ -260,15 +252,17 @@ Group.Right3:AddToggle('',{
     Text = "Generator ESP", 
     Callback = function(value)
 if value then
+ wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Highlight(v, "Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+ wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Highlight(v, "Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 end)
@@ -285,12 +279,14 @@ Group.Right3:AddToggle('',{
     Text = "Box ESP", 
     Callback = function(value)
 if value then
+ wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
 Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+  wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
 Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
@@ -310,6 +306,7 @@ Group.Right3:AddToggle('',{
     Text = "Entity ESP", 
     Callback = function(value)
 if value then
+ wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
 Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
@@ -318,12 +315,13 @@ Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "SeekNewClone" then
 Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                       
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+wait(1)                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
 Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
@@ -332,7 +330,7 @@ Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "SeekNewClone" then
 Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                                                      
 end
