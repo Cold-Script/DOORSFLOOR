@@ -231,6 +231,11 @@ if v.Name == "Door" and v.Parent.Name == "Door" then
 Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Door" and v.Parent.Name == "Door" then
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+end
+end                
 ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
  wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
@@ -238,6 +243,11 @@ if v.Name == "Door" and v.Parent.Name == "Door" then
 Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Door" and v.Parent.Name == "Door" then
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+end
+end                        
 end)
 else
 ESP1:Disconnect()
@@ -270,6 +280,33 @@ else
 ESP6:Disconnect()
 for _, v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesESP1" then
+v:Destroy()
+end
+end
+end 
+end})    
+Group.Right3:AddToggle('',{
+    Text = "Fuss ESP", 
+    Callback = function(value)
+if value then
+ wait(1)               
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "FuseObtain" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+end
+end
+ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+ wait(1)                       
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "FuseObtain" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+end
+end
+end)
+else
+ESP6:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesESP3" then
 v:Destroy()
 end
 end
