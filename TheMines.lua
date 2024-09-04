@@ -120,7 +120,7 @@ local Group = {
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
-  Right4 = Tabs.Visual:AddRightGroupboc("Auto Interact"),
+  Right4 = Tabs.Visual:AddRightGroupbox("Auto Interact"),
 }
 Group.Left1:AddButton({
     Text = "Unload Library (Kill GUI)",
