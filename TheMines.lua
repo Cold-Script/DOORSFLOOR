@@ -98,7 +98,6 @@ local Group = {
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
-  Left5 = Tabs.Visual:AddLeftGroupbox('ESP Setting')
 }
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;_G.SpeedHack=true;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
@@ -472,8 +471,3 @@ end
                 end
 end 
 end})
-Group.Left5:AddToggle('',{
-Text = 'Tracer',
-Callback = function(v)
-_G.Tracer = v
-end})	
