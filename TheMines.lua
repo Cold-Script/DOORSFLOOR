@@ -1,8 +1,129 @@
-local warningSound = Instance.new'Sound' 
-warningSound.SoundId = 'rbxassetid://1570162306'
-warningSound.Volume = 1
-warningSound.Parent = game.Players.LocalPlayer.PlayerGui
+local screen_gui = Instance.new("ScreenGui")
+screen_gui.Name = "Kiwi"
+screen_gui.DisplayOrder = 999999999
+screen_gui.IgnoreGuiInset = false
+screen_gui.ResetOnSpawn = false
+screen_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screen_gui.Parent = game.CoreGui
 
+local frame = Instance.new("Frame")
+frame.AnchorPoint = Vector2.new(0, 1)
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.BackgroundTransparency = 1
+frame.BorderColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Position = UDim2.new(0, 0, 1, 0)
+frame.Size = UDim2.new(0.386924595, 0, 0.576817155, 0)
+frame.Visible = true
+frame.Parent = screen_gui
+
+local uigrid_layout = Instance.new("UIGridLayout")
+uigrid_layout.CellPadding = UDim2.new(0, 0, 0.0500000007, 0)
+uigrid_layout.CellSize = UDim2.new(0.800000012, 0, 0.200000003, 0)
+uigrid_layout.StartCorner = Enum.StartCorner.BottomLeft
+uigrid_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+uigrid_layout.Parent = frame
+
+local uipadding = Instance.new("UIPadding")
+uipadding.PaddingBottom = UDim.new(0.02500000037252903, 0)
+uipadding.Parent = frame
+
+local template = Instance.new("Frame")
+template.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+template.BorderColor3 = Color3.new(0, 0, 0)
+template.BorderSizePixel = 0
+template.Position = UDim2.new(0, 0, 0.605726838, 0)
+template.Size = UDim2.new(0, 231, 0, 286)
+template.Visible = false
+template.Name = "template"
+template.Parent = frame
+
+local uiscale = Instance.new("UIScale")
+uiscale.Parent = template
+
+local uicorner = Instance.new("UICorner")
+uicorner.Parent = template
+
+local uistroke = Instance.new("UIStroke")
+uistroke.Color = Color3.fromRGB(0, 0, 255)
+uistroke.Thickness = 1
+uistroke.Parent = template
+
+local uigradient = Instance.new("UIGradient")
+uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.996078, 0.0392157, 0)), ColorSequenceKeypoint.new(0.1599999964237213, Color3.new(1, 0.615686, 0)), ColorSequenceKeypoint.new(0.3199999928474426, Color3.new(1, 1, 0)), ColorSequenceKeypoint.new(0.47999998927116394, Color3.new(0, 1, 0)), ColorSequenceKeypoint.new(0.6399999856948853, Color3.new(0, 0.666667, 1)), ColorSequenceKeypoint.new(0.800000011920929, Color3.new(1, 0.333333, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.666667, 0, 1))})
+uigradient.Parent = uistroke
+
+local text_label = Instance.new("TextLabel")
+text_label.Font = Enum.Font.GothamBold
+text_label.Text = "Entity spawned"
+text_label.TextColor3 = Color3.new(1, 1, 1)
+text_label.TextScaled = true
+text_label.TextSize = 14
+text_label.TextWrapped = true
+text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+text_label.BackgroundTransparency = 1
+text_label.BorderColor3 = Color3.new(0, 0, 0)
+text_label.BorderSizePixel = 0
+text_label.Size = UDim2.new(1, 0, 1, 0)
+text_label.Visible = true
+text_label.ZIndex = 3
+text_label.Parent = template
+
+local uistroke_2 = Instance.new("UIStroke")
+uistroke_2.Thickness = 1
+uistroke_2.Parent = text_label
+
+local uipadding_2 = Instance.new("UIPadding")
+uipadding_2.PaddingBottom = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingLeft = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingRight = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingTop = UDim.new(0.10000000149011612, 0)
+uipadding_2.Parent = text_label
+
+local uigradient_2 = Instance.new("UIGradient")
+uigradient_2.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.3799654543399811, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.5, Color3.new(0.580392, 0.580392, 0.580392)), ColorSequenceKeypoint.new(0.5336787700653076, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(1, 1, 1))})
+uigradient_2.Offset = Vector2.new(-1, 0)
+uigradient_2.Rotation = 45
+uigradient_2.Parent = template
+
+local shadow = Instance.new("ImageLabel")
+shadow.Image = "rbxassetid://14001321443"
+shadow.ImageColor3 = Color3.new(0, 0, 0)
+shadow.ImageTransparency = 0.75
+shadow.ScaleType = Enum.ScaleType.Slice
+shadow.SliceCenter = Rect.new(50, 50, 150, 150)
+shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+shadow.BackgroundColor3 = Color3.new(1, 1, 1)
+shadow.BackgroundTransparency = 1
+shadow.BorderColor3 = Color3.new(0, 0, 0)
+shadow.BorderSizePixel = 0
+shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+shadow.Size = UDim2.new(1, 35, 1, 35)
+shadow.Visible = true
+shadow.ZIndex = -1
+shadow.Name = "shadow"
+shadow.Parent = template
+
+local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+uiaspect_ratio_constraint.AspectRatio = 1.107398509979248
+uiaspect_ratio_constraint.Parent = frame
+
+local function sound()
+	local notification = Instance.new("Sound", workspace)
+	notification.SoundId = "rbxassetid://5153734608"
+	notification.Parent = workspace
+	notification:Play()
+end
+
+local function notify(name)
+	sound()
+	local tem = template:Clone()
+	tem.Visible = true
+	tem.TextLabel.Text = name
+end
+	
 local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -83,11 +204,6 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
-function notify(Text)
-    lib:Notify(Text)
-	wait(0.3)
-warningSound:Play() 
-end
 
 local Tabs = {
   Cheat = Window:AddTab("Players"),
@@ -96,7 +212,6 @@ local Tabs = {
 local Group = {
   Left2 = Tabs.Cheat:AddLeftGroupbox('Players'),
   Left3 = Tabs.Visual:AddLeftGroupbox("Disabled"),
-  Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
 }
@@ -138,11 +253,11 @@ v:Destroy()
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
 Group.Left3:AddToggle("",{Text = "Disabled Light",Default = false,Tooltip = "No Light",Callback = function(NL)_G.MSHNL = NL ;end})  
 Group.Right2:AddToggle("",{Text="Anti Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});
-Group.Right2:AddToggle('',{
-            Text = "Anti Giggle",
+Group.Left3:AddToggle('',{
+            Text = "Disabled Giggle",
             Callback = function(value)
 _G.AntiGiggle = value               
-while _G.AntiGiggle do wait()
+while _G.AntiGiggle do wait(0.3)
 for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "GiggleCeiling" then
 v:Destroy()
@@ -150,8 +265,8 @@ v:Destroy()
            end
         end                
     end})
-Group.Right2:AddToggle('',{
-            Text = "Anti Screech",
+Group.Left3:AddToggle('',{
+            Text = "Disabled Screech",
             Callback = function(value)
 if value then
 Screech = game:GetService("ReplicatedStorage").Entities.Screech
@@ -160,7 +275,31 @@ Screech:Destroy()
 Screech:Disconnect()
 			end			
     end})
-game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Group.Right2:AddToggle("",{Text="Anti Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
+Group.Left3:AddToggle('',{
+            Text = "Disabled Gloom Egg",
+            Callback = function(value)
+_G.AntiEgg = value               
+while _G.AntiEgg do wait(0.3)
+for _,v in pairs(workspace:GetDescendants()) do                   
+if v.Name == "GloomPile" then
+v:Destroy()
+              end
+           end
+        end                
+    end})
+Group.Left3:AddToggle('',{
+            Text = "Disabled Figure",
+            Callback = function(value)
+_G.AntiFigure = value               
+while _G.AntiFigure do wait(0.3)
+for _,v in pairs(workspace:GetDescendants()) do                   
+if v.Name == "FigureSetup" then
+v:Destroy()
+              end
+           end
+        end                
+    end})
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);Group.Left3:AddToggle("",{Text="Disabled Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});
 
 
 Group.Left4:AddSlider("",{Text="Field of View ",Default=120,Min=1226 -(1074 + 82) ,Max=120,Rounding=0 -0 ,Compact=true,Callback=function(v81)_G.FieldOfViewe=v81;end});
