@@ -34,18 +34,21 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end
         end)
+local camera = workspace.CurrentCamera
+local tracer = Drawing.new('Line'); do 
+tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y)
+tracer.Color = color 
+while wait() do 
+task.spawn(function() 
+if _G.Tracer and child.Parent ~= nil then 
+local vector, onscreen = camera:WorldToViewportPoint(child.Position) 
+tracer.To = Vector2.new(vector.X, vector.Y) tracer.Visible = onscreen 
+else 
+tracer.Visible = false end 
+game.RunService.RenderStepped:Wait() Title.Parent = Billboard end) end end end 
 end
 
-
-
-local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
-local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
-local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
-local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
-
-local Options = getgenv().Options
-
-local Window = local function Billboard(child, name, color, title)
+local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
     Billboard.AlwaysOnTop = true
@@ -76,8 +79,28 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end
         end)
+local camera = workspace.CurrentCamera
+local tracer = Drawing.new('Line'); do 
+tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y)
+tracer.Color = color 
+while wait() do 
+task.spawn(function() 
+if _G.Tracer and child.Parent ~= nil then 
+local vector, onscreen = camera:WorldToViewportPoint(child.Position) 
+tracer.To = Vector2.new(vector.X, vector.Y) tracer.Visible = onscreen 
+else 
+tracer.Visible = false end 
+game.RunService.RenderStepped:Wait() Title.Parent = Billboard end) end end end 
 end
-lib:CreateWindow({
+
+local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
+local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
+local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
+
+local Options = getgenv().Options
+
+local Window = lib:CreateWindow({
     Title = '(YOU HUB) Floor 2 Helper | v1.0',
     Center = true,
     AutoShow = true,
@@ -99,6 +122,7 @@ local Group = {
   Right2 = Tabs.Visual:AddRightGroupbox("Anti"),
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
+  Left5 = Tabs.Visual:AddLeftGroupbox('ESP Setting')
 }
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=0,Min=0,Max=1,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;Group.Left2:AddToggle("MyToggle",{Text="Enable Speed Boots",Default=false,Tooltip="Speed Boots",Callback=function(v82)_G.SpeedHack=v82;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end end});
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
@@ -469,4 +493,8 @@ end
                 end
 end 
 end})
-
+Group.Left5:AddToggle('',{
+Text = 'Tracer',
+Callback = function(v)
+_G.Tracer = v
+end})	
