@@ -34,18 +34,6 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end
         end)
-local camera = workspace.CurrentCamera
-local tracer = Drawing.new('Line'); do 
-tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y)
-tracer.Color = color 
-while wait() do 
-task.spawn(function() 
-if _G.Tracer and child.Parent ~= nil then 
-local vector, onscreen = camera:WorldToViewportPoint(child.Position) 
-tracer.To = Vector2.new(vector.X, vector.Y) tracer.Visible = onscreen 
-else 
-tracer.Visible = false end 
-game.RunService.RenderStepped:Wait() Title.Parent = Billboard end) end end end 
 end
 
 local function Billboard(child, name, color, title)
@@ -79,18 +67,6 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end
         end)
-local camera = workspace.CurrentCamera
-local tracer = Drawing.new('Line'); do 
-tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y)
-tracer.Color = color 
-while wait() do 
-task.spawn(function() 
-if _G.Tracer and child.Parent ~= nil then 
-local vector, onscreen = camera:WorldToViewportPoint(child.Position) 
-tracer.To = Vector2.new(vector.X, vector.Y) tracer.Visible = onscreen 
-else 
-tracer.Visible = false end 
-game.RunService.RenderStepped:Wait() Title.Parent = Billboard end) end end end 
 end
 
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
@@ -161,7 +137,7 @@ v:Destroy()
 
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
 Group.Left3:AddToggle("",{Text = "Disabled Light",Default = false,Tooltip = "No Light",Callback = function(NL)_G.MSHNL = NL ;end})  
-Group.Right2:AddToggle("",{Text="Anti-Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});
+Group.Right2:AddToggle("",{Text="Anti Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});
 Group.Right2:AddToggle('',{
             Text = "Anti Giggle",
             Callback = function(value)
@@ -218,12 +194,15 @@ Group.Left4:AddToggle('',{
     end
 })
 Group.Left4:AddToggle('',{
-		Text = "Notify Entities",
+		Text = "Notify Helper",
 		Callback = function(v)
 if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
-				if child.Name == "Eyes" then
+				if child.Name == "FuseObtain" then
+					notify("Find The Fuses And Press Generator!")
+		
+				elseif child.Name == "Eyes" then
 					notify("Eyes has spawned, dont look into its eyes!")
 					
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
