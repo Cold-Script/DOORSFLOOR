@@ -2,10 +2,6 @@ local warningSound = Instance.new'Sound'
 warningSound.SoundId = 'rbxassetid://1570162306'
 warningSound.Volume = 1
 warningSound.Parent = game.Players.LocalPlayer.PlayerGui
-function notify(Text, Duration)
-    lib:Notify(Text, Duration)
-     warningSound:Play() 
-end
 
 local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
@@ -19,7 +15,7 @@ local function Billboard(child, name, color, title)
     Billboard.Parent = child
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
-    Title.Text = name
+    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentRooms.CFrame.Position - child:GetPivot().Position).Magnitude))
     Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
@@ -34,18 +30,7 @@ local function Billboard(child, name, color, title)
     uistroke.Thickness = 1
     uistroke.Parent = Title
 end
-local function Highlight(child, name, color, title)
-    Billboard(child, name, color, title)
-    local Highlight = Instance.new("Highlight")
-    Highlight.Parent = child
-    Highlight.Adornee = child
-    Highlight.FillTransparency = 0.5
-    Highlight.OutlineTransparency = 0
-    Highlight.Name = title
-    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Highlight.OutlineColor = color
-    Highlight.FillColor = color
-end
+
 local function Billboard2(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -73,33 +58,7 @@ local function Billboard2(child, name, color, title)
     uistroke.Thickness = 1
     uistroke.Parent = Title
 end
-local function Highlight2(child, name, color, title)
-    Billboard(child, name, color, title)
-    local Highlight = Instance.new("Highlight")
-    Highlight.Parent = child
-    Highlight.Adornee = child
-    Highlight.FillTransparency = 0.5
-    Highlight.OutlineTransparency = 0
-    Highlight.Name = title
-    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Highlight.OutlineColor = color
-    Highlight.FillColor = color
-    if child:IsA("Part") then
-        child.Color = Color3.new(1,1,1)
-        child.Transparency = 0
-    end
-end
-function Distance(part, extra)
-	if not extra then extra = 15 end
-	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
-		return false
-	end
-	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
-	if distanceToPart <= extra then
-		return true
-	end
-	return false
-end
+
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -114,6 +73,10 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
+function notify(Text, Duration)
+    lib:Notify(Text, Duration)
+     warningSound:Play() 
+end
 
 local Tabs = {
   Cheat = Window:AddTab("Players"),
