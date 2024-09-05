@@ -9,7 +9,7 @@ local function Billboard(child, name, color, title)
     Billboard.AlwaysOnTop = true
     Billboard.ClipsDescendants = true
     Billboard.LightInfluence = 1
-    Billboard.Size = UDim2.new(100, 0, 100, 0)
+    Billboard.Size = UDim2.new(300, 0, 300, 0)
     Billboard.ResetOnSpawn = false
     Billboard.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     Billboard.Parent = child
@@ -24,22 +24,24 @@ local function Billboard(child, name, color, title)
     Title.BorderSizePixel = 0
     Title.Size = UDim2.new(1, 0, 1, 0)
     Title.Visible = true
-    Title.Parent = Billboard
     local uistroke = Instance.new("UIStroke")
     uistroke.Thickness = 1
     uistroke.Parent = Title
-while wait() do
+task.spawn(function()
+  repeat
     Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
-end
+game:GetService('RunService').RenderStepped:Wait()
+            until Title.Parent = Billboard
+        end)
 end
 
-local function Billboard2(child, name, color, title)
+local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
     Billboard.AlwaysOnTop = true
     Billboard.ClipsDescendants = true
     Billboard.LightInfluence = 1
-    Billboard.Size = UDim2.new(100, 0, 100, 0)
+    Billboard.Size = UDim2.new(300, 0, 300, 0)
     Billboard.ResetOnSpawn = false
     Billboard.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     Billboard.Parent = child
@@ -54,13 +56,15 @@ local function Billboard2(child, name, color, title)
     Title.BorderSizePixel = 0
     Title.Size = UDim2.new(1, 0, 1, 0)
     Title.Visible = true
-    Title.Parent = Billboard
     local uistroke = Instance.new("UIStroke")
     uistroke.Thickness = 1
     uistroke.Parent = Title
-while wait() do
+task.spawn(function()
+  repeat
     Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
-end
+game:GetService('RunService').RenderStepped:Wait()
+            until Title.Parent = Billboard
+        end)
 end
 
 
