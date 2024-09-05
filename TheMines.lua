@@ -15,7 +15,7 @@ local function Billboard(child, name, color, title)
     Billboard.Parent = child
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
-    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentRooms.CFrame.Position - child:GetPivot().Position).Magnitude))
+    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
     Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
@@ -43,7 +43,7 @@ local function Billboard2(child, name, color, title)
     Billboard.Parent = child
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
-    Title.Text = name
+    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
     Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
