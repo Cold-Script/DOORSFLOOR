@@ -230,6 +230,7 @@ for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
+				end					
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
