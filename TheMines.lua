@@ -15,7 +15,6 @@ local function Billboard(child, name, color, title)
     Billboard.Parent = child
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
-    Title.Text = name
     Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
@@ -29,6 +28,9 @@ local function Billboard(child, name, color, title)
     local uistroke = Instance.new("UIStroke")
     uistroke.Thickness = 1
     uistroke.Parent = Title
+while wait() do
+    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
+end
 end
 
 local function Billboard2(child, name, color, title)
@@ -43,7 +45,6 @@ local function Billboard2(child, name, color, title)
     Billboard.Parent = child
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
-    Title.Text = name
     Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
@@ -57,7 +58,11 @@ local function Billboard2(child, name, color, title)
     local uistroke = Instance.new("UIStroke")
     uistroke.Thickness = 1
     uistroke.Parent = Title
+while wait() do
+    Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
 end
+end
+
 
 local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
@@ -223,24 +228,23 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
-end
+Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end                
 ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
  wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end                        
 end)
@@ -260,14 +264,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 ESP2 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
  wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 end)
@@ -287,14 +291,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
-Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
 end
 end
 ESP3 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
  wait(1)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
-Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
 end
 end
 end)
@@ -314,14 +318,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
-Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 ESP4 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
-Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 end)
@@ -341,14 +345,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MineAnchor" then
-Highlight(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
+Billboard(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
 end
 end
 ESP5 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MineAnchor" then
-Highlight(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
+Billboard(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
 end
 end
 end)
@@ -368,14 +372,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Highlight(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
+Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
 end
 end
 ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Highlight(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
+Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
 end
 end
 end)
@@ -395,14 +399,14 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
+Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
   wait(1)                      
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Highlight(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
+Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
 end
 end
 end)
@@ -422,30 +426,30 @@ if value then
  wait(1)               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
-Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "AmbushMoving" then
-Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "FigureRig" then
-Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "SeekNewClone" then
-Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                       
+Billboard2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                       
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 wait(1)                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
-Highlight2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "AmbushMoving" then
-Highlight2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "FigureRig" then
-Highlight2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
+Billboard2(v, "", Color3.fromRGB(255,0,0), "EntityESP")
 elseif v.Name == "SeekNewClone" then
-Highlight2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                                                      
+Billboard2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                                                      
 end
 end
 end)
