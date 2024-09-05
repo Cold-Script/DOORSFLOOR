@@ -36,7 +36,7 @@ game:GetService('RunService').RenderStepped:Wait()
         end)
 end
 
-local function Billboard(child, name, color, title)
+local function Billboard2(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
     Billboard.AlwaysOnTop = true
@@ -143,7 +143,7 @@ Group.Right2:AddToggle('',{
 _G.AntiGiggle = value               
 while _G.AntiGiggle do wait(1)
 for _,v in pairs(workspace:GetDescendants()) do                   
-if v.Name == "GiggleCelling" then
+if v.Name == "GiggleCeiling" then
 v:Destroy()
               end
            end
@@ -198,16 +198,13 @@ Group.Left4:AddToggle('',{
 if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
-				if child.Name == "FuseObtain" then
-					notify("Find The Fuses And Press Generator!")
-		
-				elseif child.Name == "Eyes" then
+				if child.Name == "Eyes" then
 					notify("Eyes has spawned, dont look into its eyes!")
 					
-				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+				elseif child.Name == "RushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Rush has spawn, find the locker hide now!")
 					
-				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+				elseif child.Name == "AmbushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Ambush has spawn, find the locker hide now!")
 
 				elseif child.Name == "FigureRig" then
