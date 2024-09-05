@@ -83,9 +83,10 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
-function notify(Text, Duration)
-    lib:Notify(Text, Duration)
-     warningSound:Play() 
+function notify(Text)
+    lib:Notify(Text)
+	wait(0.3)
+warningSound:Play() 
 end
 
 local Tabs = {
@@ -99,7 +100,7 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
 }
-game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;_G.SpeedHack=true;game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=16;_G.FieldOfViewe=120;_G.SpeedHack=true;game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
 _G.SpeedHack then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.SelectBoots;end;end);end)
 
@@ -141,7 +142,7 @@ Group.Right2:AddToggle('',{
             Text = "Anti Giggle",
             Callback = function(value)
 _G.AntiGiggle = value               
-while _G.AntiGiggle do wait(1)
+while _G.AntiGiggle do wait()
 for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "GiggleCeiling" then
 v:Destroy()
@@ -218,7 +219,7 @@ if v then
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Screech" then
-					lib:Notify("Screech has me, Look its now for me")
+					notify("Screech has me, Look its now for me")
 				end
 			end)
 		else
