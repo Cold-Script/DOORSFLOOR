@@ -1,3 +1,12 @@
+local warningSound = Instance.new'Sound' 
+warningSound.SoundId = 'rbxassetid://1570162306'
+warningSound.Volume = 1
+warningSound.Parent = game.Players.LocalPlayer.PlayerGui
+function notify(Text, Duration)
+    lib:Notify(Text, Duration)
+     warningSound:Play() 
+end
+
 local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -11,7 +20,7 @@ local function Billboard(child, name, color, title)
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
     Title.Text = name
-    Title.TextSize = 14
+    Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
     Title.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -50,7 +59,7 @@ local function Billboard2(child, name, color, title)
     Billboard.Name = title
     local Title = Instance.new("TextLabel")
     Title.Text = name
-    Title.TextSize = 14
+    Title.TextSize = 25
     Title.Font = "Oswald"
     Title.TextColor3 = color
     Title.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -117,7 +126,10 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
 }
-game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.speedkuys then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=_G.SelectBootst;end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(16 + 0))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=17;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(18))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=35;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(0 +(18 + 1)))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=2.5 + 17.5 ;elseif _G.SpeedHack then local v796=31 + 4 + game.Players.LocalPlayer.Character.Humanoid:GetAttribute("SpeedBoost") ;if (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed<=v796) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed+=_G.SelectBoots end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=0,Min=0,Max=1,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;Group.Left2:AddToggle("MyToggle",{Text="Enable Speed Boots",Default=false,Tooltip="Speed Boots",Callback=function(v82)_G.SpeedHack=v82;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end end});
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Left2:AddSlider("",{Text="Speed Boots",Default=0,Min=0,Max=1,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;Group.Left2:AddToggle("MyToggle",{Text="Enable Speed Boots",Default=false,Tooltip="Speed Boots",Callback=function(v82)_G.SpeedHack=v82;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end end});
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
+_G.SpeedHack then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.SelectBoots;end;end);end)
+
 Group.Left2:AddButton({
         Text = "Reset Character",
         DoubleClick = true,
@@ -214,18 +226,18 @@ if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					lib:Notify("Eyes has spawned, dont look into its eyes!")
+					notify("Eyes has spawned, dont look into its eyes!")
 					
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					lib:Notify("Rush has spawn, find the locker hide now!")
+					notify("Rush has spawn, find the locker hide now!")
 					
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					lib:Notify("Ambush has spawn, find the locker hide now!")
+					notify("Ambush has spawn, find the locker hide now!")
 
 				elseif child.Name == "FigureRig" then
-					lib:Notify("Figure has spawn, be careful and don't make any noise!")
+					notify("Figure has spawn, be careful and don't make any noise!")
 				elseif child.Name == "GiggleCeiling" then
-					lib:Notify("Giggle has spawn, please be careful with the ceiling!")
+					notify("Giggle has spawn, please be careful with the ceiling!")
 									
 				end
 						
