@@ -91,7 +91,7 @@ Notification.Notify(name, text, "rbxasset://textures/ui/GuiImagePlaceholder.png"
         Rounding = false,
     }
 });
-
+end
 local Tabs = {
   Visual = Window:AddTab("Main"),
 }
@@ -258,7 +258,7 @@ if v then
 			EntityNotifierScreech:Disconnect()
 			end
 		end})
-Group.Left4:AddButton({Text='Disabled Effect Darkness',
+Group.Left4:AddButton({Text='Disabled Effect Darkness',Func = function()
 			while wait(1) do
 local DepthOfField = Instance.new("DepthOfFieldEffect", game.Lighting)
 DepthOfField.FarIntensity = 0.3
