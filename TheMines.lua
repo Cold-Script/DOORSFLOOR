@@ -2,6 +2,7 @@ if _G.Exe then
 	print('lol')
 	return
 end
+_G.Exe = true
 local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -82,6 +83,14 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+function notify(name, text)
+Notification.Notify(name, text, "rbxasset://textures/ui/GuiImagePlaceholder.png", {
+    Duration = 1.5,       
+    Main = {
+        Rounding = false,
+    }
+});
 
 local Tabs = {
   Visual = Window:AddTab("Main"),
@@ -91,6 +100,7 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
   Right4 = Tabs.Visual:AddRightGroupbox('Players'),
+  Left5 = Tabs.Visual:AddLeftGroupbox('Prompts')
 }
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Right4:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=16;_G.FieldOfViewe=120;_G.SpeedHack=true;game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
@@ -247,7 +257,28 @@ if v then
 			EntityNotifier:Disconnect()
 			EntityNotifierScreech:Disconnect()
 			end
-		end})			
+		end})
+Group.Left4:AddButton({Text='Disabled Effect Darkness',
+			while wait(1) do
+local DepthOfField = Instance.new("DepthOfFieldEffect", game.Lighting)
+DepthOfField.FarIntensity = 0.3
+DepthOfField.FocusDistance = 20
+DepthOfField.InFocusRadius = 0
+DepthOfField.NearIntensity = 0
+
+local SunRays = Instance.new("SunRaysEffect", game.Lighting)
+SunRays.Intensity = 0.1
+SunRays.Spread = 0.8
+
+local ColorCorrection = Instance.new("ColorCorrectionEffect", game.Lighting)
+ColorCorrection.Brightness = 0.025
+ColorCorrection.Contrast = 0.13
+ColorCorrection.Saturation = 0.15
+
+game.Lighting.GlobalShadows = false
+game.Lighting.OutdoorAmbient = Color3.fromRGB(35, 35, 45)
+			end
+			end})				
 Group.Right3:AddToggle('',{
     Text = "Doors ESP", 
     Callback = function(value)
@@ -490,7 +521,8 @@ end
                 end
 end 
 end})
-if AdminAdd then
+game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
+if Admin then	
 local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
 	Admin:AddToggle('',{Text='Auto ProximityPrompt',
 			Callback = function(v)
@@ -503,7 +535,7 @@ local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
 				end
 			end
 		end
-	end})
+	})
 Admin:AddToggle('',{
             Text = "Disabled Lockers",
             Callback = function(value)
@@ -516,8 +548,9 @@ v:Destroy()
            end
         end                
     end})
-Admin:AddButton('',{Text='Infinite Yield',
+Admin:AddButton({Text='Infinite Yield',
 	Func = function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()	
 	end})
+
 end
