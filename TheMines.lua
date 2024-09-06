@@ -1,3 +1,7 @@
+if _G.Exe then
+	print('lol')
+	return
+end
 local function Billboard(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -486,3 +490,34 @@ end
                 end
 end 
 end})
+if AdminAdd then
+local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
+	Admin:AddToggle('',{Text='Auto ProximityPrompt',
+			Callback = function(v)
+			_G.PP = v
+				while _G.PP then wait(1)
+				for _, v in pairs(workspace:GetDescendants()) do
+                if v:IsA("ProximityPrompt") and v.Name == v.Name then
+                    fireproximityprompt(v)
+					end
+				end
+			end
+		end
+	end})
+Admin:AddToggle('',{
+            Text = "Disabled Lockers",
+            Callback = function(value)
+_G.Locker = value               
+while _G.Locker do wait(0.3)
+for _,v in pairs(workspace:GetDescendants()) do                   
+if v.Name == "Locker_Large" then
+v:Destroy()
+              end
+           end
+        end                
+    end})
+Admin:AddButton('',{Text='Infinite Yield',
+	Func = function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()	
+	end})
+end
