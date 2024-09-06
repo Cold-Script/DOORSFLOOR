@@ -100,7 +100,8 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
   Right4 = Tabs.Visual:AddRightGroupbox('Players'),
-  Left5 = Tabs.Visual:AddLeftGroupbox('Prompts')
+  Left5 = Tabs.Visual:AddLeftGroupbox('Prompts'),
+  Admin = Tabs.Visual:AddRightGroupbox('Admin (Admin Only)')	
 }
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Right4:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=16;_G.FieldOfViewe=120;_G.SpeedHack=true;game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
@@ -522,9 +523,8 @@ end
 end 
 end})
 game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
-if Admin then	
 local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
-	Admin:AddToggle('',{Text='Auto ProximityPrompt',
+	Tabs.Admin:AddToggle('',{Text='Auto ProximityPrompt',
 			Callback = function(v)
 			_G.PP = v
 				while _G.PP then wait(1)
@@ -536,7 +536,7 @@ local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
 			end
 		end
 	})
-Admin:AddToggle('',{
+Tabs.Admin:AddToggle('',{
             Text = "Disabled Lockers",
             Callback = function(value)
 _G.Locker = value               
@@ -548,9 +548,7 @@ v:Destroy()
            end
         end                
     end})
-Admin:AddButton({Text='Infinite Yield',
+Tabs.Admin:AddButton({Text='Infinite Yield',
 	Func = function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()	
 	end})
-
-end
