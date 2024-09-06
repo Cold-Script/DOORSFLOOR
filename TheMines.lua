@@ -226,7 +226,7 @@ Group.Left4:AddToggle('',{
     end
 })
 Group.Left4:AddToggle('',{
-		Text = "Notify Helper",
+		Text = "Notify Entity",
 		Callback = function(v)
 if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
@@ -260,7 +260,7 @@ if v then
 			end
 		end})
 Group.Left4:AddButton({Text='Disabled Effect Darkness',Func = function()
-			while wait(1) do
+			
 local DepthOfField = Instance.new("DepthOfFieldEffect", game.Lighting)
 DepthOfField.FarIntensity = 0.3
 DepthOfField.FocusDistance = 20
@@ -278,7 +278,7 @@ ColorCorrection.Saturation = 0.15
 
 game.Lighting.GlobalShadows = false
 game.Lighting.OutdoorAmbient = Color3.fromRGB(35, 35, 45)
-			end
+			
 			end})				
 Group.Right3:AddToggle('',{
     Text = "Doors ESP", 
@@ -522,9 +522,9 @@ end
                 end
 end 
 end})
-game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
-local Admin = Tabs.Visual:AddRightGroupbox('ADMIN ADDED')
-	Tabs.Admin:AddToggle('',{Text='Auto ProximityPrompt',
+game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
+	Tabs.Admin:AddToggle('',{
+		Text='Auto ProximityPrompt',
 			Callback = function(v)
 			_G.PP = v
 				while _G.PP then wait(1)
