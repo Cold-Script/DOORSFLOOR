@@ -232,18 +232,18 @@ if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					notify("Eyes has spawned, dont look into its eyes!")
+					notify("YOUHUB","Eyes has spawned, dont look into its eyes!")
 					
 				elseif child.Name == "RushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Rush has spawn, find the locker hide now!")
+					notify("YOUHUB","Rush has spawn, find the locker hide now!")
 					
 				elseif child.Name == "AmbushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Ambush has spawn, find the locker hide now!")
+					notify("YOUHUB","Ambush has spawn, find the locker hide now!")
 
 				elseif child.Name == "FigureRig" then
-					notify("Figure has spawn, be careful and don't make any noise!")
+					notify("YOUHUB","Figure has spawn, be careful and don't make any noise!")
 				elseif child.Name == "GiggleCeiling" then
-					notify("Giggle has spawn, please be careful with the ceiling!")
+					notify("YOUHUB","Giggle has spawn, please be careful with the ceiling!")
 									
 				end
 						
@@ -251,7 +251,7 @@ if v then
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Screech" then
-					notify("Screech has me, Look its now for me")
+					notify("YOUHUB","Screech has me, Look its now for me")
 				end
 			end)
 		else
@@ -259,7 +259,7 @@ if v then
 			EntityNotifierScreech:Disconnect()
 			end
 		end})
-Group.Left4:AddButton({Text='Disabled Effect Darkness',Func = function()
+Group.Left4:AddButton({Text='Effect Light XD',Func = function()
 			
 local DepthOfField = Instance.new("DepthOfFieldEffect", game.Lighting)
 DepthOfField.FarIntensity = 0.3
@@ -277,14 +277,13 @@ ColorCorrection.Contrast = 0.13
 ColorCorrection.Saturation = 0.15
 
 game.Lighting.GlobalShadows = false
-game.Lighting.OutdoorAmbient = Color3.fromRGB(35, 35, 45)
+game.Lighting.OutdoorAmbient = Color3.fromRGB(255,255,255)
 			
 			end})				
 Group.Right3:AddToggle('',{
     Text = "Doors ESP", 
     Callback = function(value)
-if value then
- wait(1)               
+if value then               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
@@ -295,8 +294,7 @@ if v.Name == "Door" and v.Parent.Name == "Door" then
 Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end                
-ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
- wait(1)                       
+ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
@@ -321,14 +319,14 @@ Group.Right3:AddToggle('',{
     Text = "Generator ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
 Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 ESP2 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
- wait(1)                       
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
 Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
@@ -348,14 +346,14 @@ Group.Right3:AddToggle('',{
     Text = "Fuse ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
 Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
 end
 end
 ESP3 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
- wait(1)                       
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
 Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
@@ -375,14 +373,14 @@ Group.Right3:AddToggle('',{
     Text = "Box ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
 Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 ESP4 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-  wait(1)                      
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
 Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
@@ -398,45 +396,19 @@ end
 end
 end 
 end})
-Group.Right3:AddToggle('',{
-    Text = "Anchor ESP", 
-    Callback = function(value)
-if value then
- wait(1)               
-for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "MineAnchor" then
-Billboard(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
-end
-end
-ESP5 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-  wait(1)                      
-for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "MineAnchor" then
-Billboard(v, "Anchor", Color3.fromRGB(80,255,200), "MinesESP4")
-end
-end
-end)
-else
-ESP5:Disconnect()
-for _, v in pairs(workspace:GetDescendants()) do
-if v.Name == "MinesESP4" then
-v:Destroy()
-end
-end
-end 
-end})
+
 Group.Right3:AddToggle('',{
     Text = "Grumble ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
 Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
 end
 end
 ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-  wait(1)                      
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
 Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
@@ -456,14 +428,14 @@ Group.Right3:AddToggle('',{
     Text = "Locker ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
 Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-  wait(1)                      
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
 Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
@@ -483,7 +455,7 @@ Group.Right3:AddToggle('',{
     Text = "Entity ESP", 
     Callback = function(value)
 if value then
- wait(1)               
+                
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
 Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
@@ -498,7 +470,7 @@ Billboard2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-wait(1)                        
+                        
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
 Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
@@ -543,7 +515,7 @@ Admin:AddToggle('',{
             Text = "Disabled Lockers",
             Callback = function(value)
 _G.Locker = value               
-while _G.Locker do wait(0.3)
+while _G.Locker do wait(2)
 for _,v in pairs(workspace:GetDescendants()) do                   
 if v.Name == "Locker_Large" then
 v:Destroy()
