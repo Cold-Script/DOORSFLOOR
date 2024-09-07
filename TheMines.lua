@@ -35,7 +35,19 @@ game:GetService('RunService').RenderStepped:Wait()
               end
         end)
 end
-
+local function Highlight(child, name, color, title)
+    Billboard(child, name, color, title)
+    local Highlight = Instance.new("Highlight") do
+    Highlight.Parent = child
+    Highlight.Adornee = child
+    Highlight.FillTransparency = 0.65
+    Highlight.OutlineTransparency = 0
+    Highlight.Name = title
+    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.FillColor = color
+end
+end
 local function Billboard2(child, name, color, title)
     local Billboard = Instance.new("BillboardGui")
     Billboard.Active = true
@@ -68,7 +80,19 @@ game:GetService('RunService').RenderStepped:Wait()
               end
         end)
 end
-
+local function Highlight2(child, name, color, title)
+    Billboard2(child, name, color, title)
+    local Highlight = Instance.new("Highlight") do
+    Highlight.Parent = child
+    Highlight.Adornee = child
+    Highlight.FillTransparency = 0.65
+    Highlight.OutlineTransparency = 0
+    Highlight.Name = title
+    Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Highlight.OutlineColor = Color3.new(1,1,1)
+    Highlight.FillColor = color
+end
+end
 local rep = 'https://raw.githubusercontent.com/Cold-Script/LinoriaLib/patch-7/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -287,23 +311,23 @@ Group.Right3:AddToggle('',{
 if value then               
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
-end
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+					end		
 				end					
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end                
 ESP1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)                       
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-Billboard(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
+Highlight(v, "Door", Color3.fromRGB(80,255,200), "DoorESP")
 end
 end                        
 end)
@@ -323,14 +347,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 ESP2 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
-Billboard(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
+Highlight(v, "Mines Generator", Color3.fromRGB(80,255,200), "MinesESP1")
 end
 end
 end)
@@ -350,14 +374,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
-Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
 end
 end
 ESP3 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
-Billboard(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "MinesESP3")
 end
 end
 end)
@@ -377,14 +401,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
-Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 ESP4 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Toolbox" then
-Billboard(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
+Highlight(v, "Box", Color3.fromRGB(80,255,200), "MinesESP2")
 end
 end
 end)
@@ -405,14 +429,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Billboard2(v, "Grumbo", Color3.fromRGB(255,0,0), "MinesESP6")
+Highlight2(v, "Grumble", Color3.fromRGB(255,255,255), "MinesESP6")
 end
 end
 ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Billboard2(v, "Grumbo", Color3.fromRGB(255,0,0), "MinesESP6")
+Highlight2(v, "Grumble", Color3.fromRGB(255,255,255), "MinesESP6")
 end
 end
 end)
@@ -432,14 +456,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
+Highlight(v, "Locker", Color3.fromRGB(255,255,255), "MinesESP7")
 end
 end
 ESP7 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Locker_Large" then
-Billboard(v, "Locker", Color3.fromRGB(80,255,200), "MinesESP7")
+Highlight(v, "Locker", Color3.fromRGB(255,255,255), "MinesESP7")
 end
 end
 end)
@@ -459,43 +483,51 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
-Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
 elseif v.Name == "AmbushMoving" then
-Billboard2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
-Billboard2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
 elseif v.Name == "GiggleCeiling" then
-Billboard2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
-Billboard2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                       
+Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")                       
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
-Billboard2(v, "Rush", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
 elseif v.Name == "AmbushMoving" then
-Billboard2(v, "Ambush", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
-Billboard2(v, "Figure", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
 elseif v.Name == "GiggleCeiling" then
-Billboard2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "EntityESP")
+Highlight2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
-Billboard2(v, "Seek", Color3.fromRGB(255,0,0), "EntityESP")                                                      
-end
+Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")                       
+end						
 end
 end)
 else
 ESP8:Disconnect()
 for _, v in pairs(workspace:GetDescendants()) do
-if v.Name == "EntityESP" then
+if v.Name == "RushESP" then
 v:Destroy()
+elseif v.Name == "AmbushESP" then
+v:Destroy()
+elseif v.Name == "FigureESP" then
+v:Destroy()
+elseif v.Name == "TrapGiggleESP" then
+v:Destroy()
+elseif v.Name == "SeekESP" then
+v:Destroy()						
 end
-                end
+end
 end 
 end})
-Group.Left5:AddToggle("",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
+Group.Left5:AddToggle("",{Text="Prompts Faster",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
 if _G.Admin then	
 Admin = Tabs.Visual:AddRightGroupbox('Admin (Admin Only)')
 Admin:AddToggle('',{
