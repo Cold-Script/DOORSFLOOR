@@ -69,7 +69,7 @@ game:GetService('RunService').RenderStepped:Wait()
         end)
 end
 
-local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+local rep = 'https://raw.githubusercontent.com/Cold-Script/LinoriaLib/patch-7/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
 local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
@@ -83,8 +83,8 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
-local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 function notify(name, text)
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 Notification.Notify(name, text, "rbxasset://textures/ui/GuiImagePlaceholder.png", {
     Duration = 1.5,       
     Main = {
@@ -227,6 +227,7 @@ Group.Left4:AddToggle('',{
 })
 Group.Left4:AddToggle('',{
 		Text = "Notify Entity",
+		Default = false,
 		Callback = function(v)
 if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
