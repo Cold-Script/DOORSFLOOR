@@ -151,7 +151,7 @@ Group.Left3:AddToggle('',{
             Callback = function(value)
 _G.AntiGiggle = value               
 while _G.AntiGiggle do wait(0.3)
-for _,v in pairs(workspace:GetDescendants()) do                   
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do                   
 if v.Name == "GiggleCeiling" then
 v:Destroy()
               end
@@ -173,7 +173,7 @@ Group.Left3:AddToggle('',{
             Callback = function(value)
 _G.AntiEgg = value               
 while _G.AntiEgg do wait(0.3)
-for _,v in pairs(workspace:GetDescendants()) do                   
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do                   
 if v.Name == "GloomPile" then
 v:Destroy()
               end
@@ -185,7 +185,7 @@ Group.Left3:AddToggle('',{
             Callback = function(value)
 _G.AntiFigure = value               
 while _G.AntiFigure do wait(0.3)
-for _,v in pairs(workspace:GetDescendants()) do                   
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do                   
 if v.Name == "FigureSetup" then
 v:Destroy()
               end
@@ -405,14 +405,14 @@ if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
+Billboard2(v, "Grumbo", Color3.fromRGB(255,0,0), "MinesESP6")
 end
 end
 ESP6 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
                         
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Grumbo" then
-Billboard2(v, "Grumbo", Color3.fromRGB(80,255,200), "MinesESP6")
+Billboard2(v, "Grumbo", Color3.fromRGB(255,0,0), "MinesESP6")
 end
 end
 end)
@@ -516,8 +516,8 @@ Admin:AddToggle('',{
             Text = "Disabled Lockers",
             Callback = function(value)
 _G.Locker = value               
-while _G.Locker do wait(2)
-for _,v in pairs(workspace:GetDescendants()) do                   
+while _G.Locker do wait()
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do                   
 if v.Name == "Locker_Large" then
 v:Destroy()
               end
