@@ -111,7 +111,7 @@ function Distance(part, extra)
 	return false
 end
 
-local rep = 'https://raw.githubusercontent.com/Cold-Script/LinoriaLib/patch-7/'
+local rep = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
 local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
@@ -198,8 +198,7 @@ Group.Left3:AddToggle('',{
             Text = "Disabled Screech",
             Callback = function(value)
 if value then
-Screech = game:GetService("ReplicatedStorage").Entities.Screech
-Screech:Destroy()
+Screech = game:GetService("ReplicatedStorage").Entities.Screech:Destroy()
 			else
 Screech:Disconnect()
 			end			
