@@ -4,7 +4,7 @@ if _G.Exe then
 end
 _G.Exe = true
 local function Billboard(child, name, color, title)
-    local Billboard = Instance.new("BillboardGui")
+    local Billboard = Instance.new("BillboardGui") do
     Billboard.Active = true
     Billboard.AlwaysOnTop = true
     Billboard.ClipsDescendants = true
@@ -35,6 +35,7 @@ game:GetService('RunService').RenderStepped:Wait()
               end
         end)
 end
+end	
 local function Highlight(child, name, color, title)
     Billboard(child, name, color, title)
     local Highlight = Instance.new("Highlight") do
@@ -49,7 +50,7 @@ local function Highlight(child, name, color, title)
 end
 end
 local function Billboard2(child, name, color, title)
-    local Billboard = Instance.new("BillboardGui")
+    local Billboard = Instance.new("BillboardGui") do
     Billboard.Active = true
     Billboard.AlwaysOnTop = true
     Billboard.ClipsDescendants = true
@@ -80,6 +81,7 @@ game:GetService('RunService').RenderStepped:Wait()
               end
         end)
 end
+end
 local function Highlight2(child, name, color, title)
     Billboard2(child, name, color, title)
     local Highlight = Instance.new("Highlight") do
@@ -91,8 +93,24 @@ local function Highlight2(child, name, color, title)
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = Color3.new(1,1,1)
     Highlight.FillColor = color
+if child:IsA("Part") then
+child.Color = color
+child.Transparency = 0
+end		
 end
 end
+function Distance(part, extra)
+	if not extra then extra = 15 end
+	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
+		return false
+	end
+	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+	if distanceToPart <= extra then
+		return true
+	end
+	return false
+end
+
 local rep = 'https://raw.githubusercontent.com/Cold-Script/LinoriaLib/patch-7/'
 local lib =   loadstring(game:HttpGet(rep.. 'Library.lua'))()
 local save =  loadstring(game:HttpGet(rep.. 'addons/SaveManager.lua'))()
@@ -124,7 +142,7 @@ local Group = {
   Left4 = Tabs.Visual:AddLeftGroupbox("Camera"),
   Right3 = Tabs.Visual:AddRightGroupbox("ESP"),
   Right4 = Tabs.Visual:AddRightGroupbox('Players'),
-  Left5 = Tabs.Visual:AddLeftGroupbox('Prompts'),
+  Left5 = Tabs.Visual:AddLeftGroupbox('Misc'),
   
 }
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);Group.Right4:AddSlider("",{Text="Speed Boots",Default=16,Min=16,Max=21,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=16;_G.FieldOfViewe=120;_G.SpeedHack=true;
@@ -527,7 +545,8 @@ end
 end
 end 
 end})
-Group.Left5:AddToggle("",{Text="Prompts Faster",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});	
+game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.IncreasedDoors then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door").ClientOpen:FireServer();end end);end);Group.Left5:AddToggle("MyToggle",{Text="Opening Door Far",Default=false,Tooltip="Door Opening Far",Callback=function(v103)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();_G.IncreasedDoors=v103;end})
 if _G.Admin then	
 Admin = Tabs.Visual:AddRightGroupbox('Admin (Admin Only)')
 Admin:AddToggle('',{
