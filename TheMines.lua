@@ -125,14 +125,8 @@ local Window = lib:CreateWindow({
     TabPadding = 8,
     MenuFadeTime = 0
 })
-function notify(name, text)
-local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
-Notification.Notify(name, text, "rbxasset://textures/ui/GuiImagePlaceholder.png", {
-    Duration = 1.5,       
-    Main = {
-        Rounding = false,
-    }
-});
+function notify(name, timer)
+lib:Notify(name, timer)
 end
 local Tabs = {
   Visual = Window:AddTab("Main"),
@@ -275,26 +269,26 @@ if v then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					notify("YOUHUB","Eyes has spawned, dont look into its eyes!")
+					notify("Eyes has spawned, dont look into its eyes!", 3)
 					
 				elseif child.Name == "RushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("YOUHUB","Rush has spawn, find the locker hide now!")
+					notify("Rush has spawn, find the locker hide now!", 3)
 					
 				elseif child.Name == "AmbushMoving" and Distance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("YOUHUB","Ambush has spawn, find the locker hide now!")
+					notify("Ambush has spawn, find the locker hide now!", 3)
 
 				elseif child.Name == "FigureRig" then
-					notify("YOUHUB","Figure has spawn, be careful and don't make any noise!")
+					notify("Figure has spawn, be careful and don't make any noise!", 3)
 				elseif child.Name == "GiggleCeiling" then
-					notify("YOUHUB","Giggle has spawn, please be careful with the ceiling!")
+					notify("Giggle has spawn, please be careful with the ceiling!", 3)
 									
 				end
 						
 			end)
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
-				task.wait(1)
+				task.wait()
 				if child.Name == "Screech" then
-					notify("YOUHUB","Screech has me, Look its now for me")
+					notify("Screech has me, Look its now for me", 3)
 				end
 			end)
 		else
@@ -575,6 +569,18 @@ v:Destroy()
            end
         end                
     end})
+Admin:AddToggle('',{
+            Text = "Disabled Ladder",
+            Callback = function(value)
+_G.Locker = value               
+while _G.Locker do wait()
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do                   
+if v.Name == "Ladder" then
+v:Destroy()
+              end
+           end
+        end                
+    end})	
 Admin:AddButton({Text='Infinite Yield',
     Func = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()    
