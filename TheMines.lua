@@ -55,7 +55,7 @@ if tracers then
             traceDrawing.Visible = false
         end
 end)
-	end
+end
 end
 local function Highlight(child, name, color, title)
     Billboard(child, name, color, title)
@@ -163,14 +163,18 @@ local theme = loadstring(game:HttpGet(rep.. 'addons/ThemeManager.lua'))()
 local Options = getgenv().Options
 
 local Window = lib:CreateWindow({
-    Title = '(YOU HUB) Floor 2 | v1.0',
+    Title = 'YPoint | v5.0',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
     MenuFadeTime = 0
 })
 function notify(name, timer)
-lib:Notify(name, timer)
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+local library =   loadstring(game:HttpGet(repo.. 'Library.lua'))()
+local savetheme =  loadstring(game:HttpGet(repo.. 'addons/SaveManager.lua'))()
+local thememanager = loadstring(game:HttpGet(repo.. 'addons/ThemeManager.lua'))()	
+library:Notify(name, timer)
 end
 local Tabs = {
   Visual = Window:AddTab("Main"),
@@ -395,6 +399,90 @@ end
 end
 end 
 end})
+Group.Right3:AddToggle('',{
+    Text = "Key ESP", 
+    Callback = function(value)
+if value then               
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "KeyObtain" then
+Highlight(v, "Key", Color3.fromRGB(80,255,200), "KeyESP")
+					end		
+				end					
+ESPv1 = workspace.CurrentRooms.ChildAdded:Connect(function(child)                       
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "KeyObtain" then
+Highlight(v, "Key", Color3.fromRGB(80,255,200), "KeyESP")
+end
+end                        
+end)
+else
+ESPv1:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "KeyESP" then
+v:Destroy()
+end
+end
+end 
+end})
+Group.Right3:AddToggle('',{
+    Text = "Breaker & Book ESP", 
+    Callback = function(value)
+if value then               
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LiveHintBook" then
+Highlight(v, "Book", Color3.fromRGB(80,255,200), "BookESP")
+elseif v.Name == "LiveBreakerPolePickup" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "BookESP")						
+					end		
+				end					
+ESPv2 = workspace.CurrentRooms.ChildAdded:Connect(function(child)                       
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LiveHintBook" then
+Highlight(v, "Book", Color3.fromRGB(80,255,200), "BookESP")
+elseif v.Name == "LiveBreakerPolePickup" then
+Highlight(v, "Fuse", Color3.fromRGB(80,255,200), "BookESP")	
+end
+end                        
+end)
+else
+ESPv2:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "BookESP" then
+v:Destroy()
+end
+end
+end 
+end})
+Group.Right3:AddToggle('',{
+    Text = "Lever ESP", 
+    Callback = function(value)
+if value then               
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LeverForGate" then
+Highlight(v, "Lever Gate", Color3.fromRGB(100,100,100), "LeverESP")
+elseif v.Name == "TimerLever" then
+Highlight(v, "Timer Lever", Color3.fromRGB(100,100,100), "LeverESP")						
+					end		
+				end					
+ESPv3 = workspace.CurrentRooms.ChildAdded:Connect(function(child)                       
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LeverForGate" then
+Highlight(v, "Lever Gate", Color3.fromRGB(100,100,100), "LeverESP")
+elseif v.Name == "TimerLever" then
+Highlight(v, "Timer Lever", Color3.fromRGB(100,100,100), "LeverESP")									
+end
+end                        
+end)
+else
+ESPv3:Disconnect()
+for _, v in pairs(workspace:GetDescendants()) do
+if v.Name == "TimerESP" then
+v:Destroy()
+end
+end
+end 
+end})
+
 Group.Right3:AddToggle('',{
     Text = "Generator ESP", 
     Callback = function(value)
