@@ -28,14 +28,35 @@ local function Billboard(child, name, color, title)
     uistroke.Thickness = 1
     uistroke.Parent = Title
 task.spawn(function()
-while wait() do
+game:GetService("RunService").RenderStepped:Connect(function()
     Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
 game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
-              end
+              end)
         end)
+local traceDrawing = Drawing.new("Line") do
+        traceDrawing.Visible = false
+        traceDrawing.Color = color
+        traceDrawing.Thickness = 1
+    end
+camera = workspace.CurrentCamera
+game:GetService('RunService').RenderStepped:Connect(function()
+if tracers then
+            local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and child:GetPivot().Position or child:IsA("BasePart") and child.Position)
+
+            if onScreen then
+                traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
+                traceDrawing.To = Vector2.new(vector.X, vector.Y)
+                traceDrawing.Visible = true
+            else
+                traceDrawing.Visible = false
+            end
+        else
+            traceDrawing.Visible = false
+        end
+end)
+	end
 end
-end	
 local function Highlight(child, name, color, title)
     Billboard(child, name, color, title)
     local Highlight = Instance.new("Highlight") do
@@ -43,6 +64,7 @@ local function Highlight(child, name, color, title)
     Highlight.Adornee = child
     Highlight.FillTransparency = 0.65
     Highlight.OutlineTransparency = 0
+    Highlight.Enabled = _G.Highlight
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = Color3.new(1,1,1)
@@ -80,6 +102,27 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end
         end)
+local traceDrawing = Drawing.new("Line") do
+        traceDrawing.Visible = false
+        traceDrawing.Color = color
+        traceDrawing.Thickness = 1
+    end
+camera = workspace.CurrentCamera
+game:GetService('RunService').RenderStepped:Connect(function()
+if tracers then
+            local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and child:GetPivot().Position or child:IsA("BasePart") and child.Position)
+
+            if onScreen then
+                traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
+                traceDrawing.To = Vector2.new(vector.X, vector.Y)
+                traceDrawing.Visible = true
+            else
+                traceDrawing.Visible = false
+            end
+        else
+            traceDrawing.Visible = false
+        end
+end)		
 end
 end
 local function Highlight2(child, name, color, title)
@@ -89,12 +132,13 @@ local function Highlight2(child, name, color, title)
     Highlight.Adornee = child
     Highlight.FillTransparency = 0.65
     Highlight.OutlineTransparency = 0
+    Highlight.Enabled = _G.Highlight
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     Highlight.OutlineColor = Color3.new(1,1,1)
     Highlight.FillColor = color
 if child:IsA("Part") then
-child.Color = color
+child.Color = Color3.new(0,0,0)
 child.Transparency = 0
 end		
 end
@@ -499,10 +543,30 @@ elseif v.Name == "AmbushMoving" then
 Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
-elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "TrapGiggleESP")
+elseif v.Name == "Handle" and v.Parent.Name == "GiggleCeiling" then
+Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
-Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")                       
+Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")
+elseif v.Name == "BackdoorRush" then
+Highlight2(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
+elseif v.Name == "BackdoorLookman" then
+Highlight2(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
+elseif v.Name == "FigureRagdoll" then
+Highlight2(v, "Figure", Color3.fromRGB(255, 255, 100), "SHMFigureESP")
+elseif v.Name == "JeffTheKiller" then
+Highlight2(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
+elseif v.Name == "Snare" then
+Highlight2(v, "Snare", Color3.fromRGB(255), "SnareESP")	
+elseif v.Name == "SeekMoving" then
+Highlight2(v, "Seek", Color3.fromRGB(50,50,50), "SeekESP")
+elseif v.Name == "A60" then
+Highlight2(v, "A60", Color3.fromRGB(255), "A60ESP")
+elseif v.Name == "A120" then
+Highlight2(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
+elseif v.Name == "Core" and v.Parent.Name == "Eyes" then
+Highlight2(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
+elseif v.Name == "ClosetSpace" then
+Highlight2(v, "Vacuum", Color3.fromRGB(255,255,255), "VacuumESP")						
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
@@ -514,10 +578,30 @@ elseif v.Name == "AmbushMoving" then
 Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
-elseif v.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle Trap", Color3.fromRGB(255,0,0), "TrapGiggleESP")
+elseif v.Name == "Handle" and v.Parent.Name == "GiggleCeiling" then
+Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
-Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")                       
+Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")
+elseif v.Name == "BackdoorRush" then
+Highlight2(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
+elseif v.Name == "BackdoorLookman" then
+Highlight2(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
+elseif v.Name == "FigureRagdoll" then
+Highlight2(v, "Figure", Color3.fromRGB(255, 255, 100), "SHMFigureESP")
+elseif v.Name == "JeffTheKiller" then
+Highlight2(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
+elseif v.Name == "Snare" then
+Highlight2(v, "Snare", Color3.fromRGB(255), "SnareESP")	
+elseif v.Name == "SeekMoving" then
+Highlight2(v, "Seek", Color3.fromRGB(50,50,50), "SeekESP")
+elseif v.Name == "A60" then
+Highlight2(v, "A60", Color3.fromRGB(255), "A60ESP")
+elseif v.Name == "A120" then
+Highlight2(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
+elseif v.Name == "Core" and v.Parent.Name == "Eyes" then
+Highlight2(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
+elseif v.Name == "ClosetSpace" then
+Highlight2(v, "Vacuum", Color3.fromRGB(255,255,255), "VacuumESP")
 end						
 end
 end)
@@ -533,11 +617,39 @@ v:Destroy()
 elseif v.Name == "TrapGiggleESP" then
 v:Destroy()
 elseif v.Name == "SeekESP" then
-v:Destroy()						
+v:Destroy()
+elseif v.Name == "BDRushESP" then
+v:Destroy()
+elseif v.Name == "SHMFigureESP" then
+v:Destroy()
+elseif v.Name == "JTKESP" then
+v:Destroy()
+elseif v.Name == "SnareESP" then
+v:Destroy()
+elseif v.Name == "A60ESP" then
+v:Destroy()
+elseif v.Name == "A120ESP" then
+v:Destroy()
+elseif v.Name == "EyesESP" then
+v:Destroy()
+elseif v.Name == "VacuumESP" then
+v:Destroy()	
 end
 end
 end 
 end})
+Group.Right3:AddToggle('',{
+    Text = "Highlight", 
+    Default = true,
+    Callback = function(value)
+_G.Highlight = value
+end})
+Group.Right3:AddButton({
+Text = "Tracers",
+DoubleClick = true,
+Func = function()
+tracers = true
+end})			
 game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.IncreasedDoors then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door").ClientOpen:FireServer();end end);end);Group.Left5:AddToggle("MyToggle",{Text="Opening Door Far",Default=false,Tooltip="Door Opening Far",Callback=function(v103)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();_G.IncreasedDoors=v103;end})
 if _G.Admin then	
