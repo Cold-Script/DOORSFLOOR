@@ -34,27 +34,6 @@ game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
               end)
         end)
-local traceDrawing = Drawing.new("Line") do
-        traceDrawing.Visible = false
-        traceDrawing.Color = color
-        traceDrawing.Thickness = 1
-    end
-camera = workspace.CurrentCamera
-game:GetService('RunService').RenderStepped:Connect(function()
-if tracers then
-            local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and child:GetPivot().Position or child:IsA("BasePart") and child.Position)
-
-            if onScreen then
-                traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
-                traceDrawing.To = Vector2.new(vector.X, vector.Y)
-                traceDrawing.Visible = true
-            else
-                traceDrawing.Visible = false
-            end
-        else
-            traceDrawing.Visible = false
-        end
-end)
 end
 end
 local function Highlight(child, name, color, title)
@@ -62,8 +41,8 @@ local function Highlight(child, name, color, title)
     local Highlight = Instance.new("Highlight") do
     Highlight.Parent = child
     Highlight.Adornee = child
-    Highlight.FillTransparency = 0.65
-    Highlight.OutlineTransparency = 0
+    Highlight.FillTransparency = _G.Fill
+    Highlight.OutlineTransparency = _G.Outline
     Highlight.Enabled = _G.Highlight
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
@@ -96,33 +75,12 @@ local function Billboard2(child, name, color, title)
     uistroke.Thickness = 1
     uistroke.Parent = Title
 task.spawn(function()
-while wait() do
+game:GetService("RunService").RenderStepped:Connect(function()
     Title.Text = string.format('%s\n[ %s ]', (name or child.Name), math.floor((workspace.CurrentCamera.CFrame.Position - child:GetPivot().Position).Magnitude))
 game:GetService('RunService').RenderStepped:Wait()
             Title.Parent = Billboard
-              end
+              end)
         end)
-local traceDrawing = Drawing.new("Line") do
-        traceDrawing.Visible = false
-        traceDrawing.Color = color
-        traceDrawing.Thickness = 1
-    end
-camera = workspace.CurrentCamera
-game:GetService('RunService').RenderStepped:Connect(function()
-if tracers then
-            local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and child:GetPivot().Position or child:IsA("BasePart") and child.Position)
-
-            if onScreen then
-                traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
-                traceDrawing.To = Vector2.new(vector.X, vector.Y)
-                traceDrawing.Visible = true
-            else
-                traceDrawing.Visible = false
-            end
-        else
-            traceDrawing.Visible = false
-        end
-end)		
 end
 end
 local function Highlight2(child, name, color, title)
@@ -130,8 +88,8 @@ local function Highlight2(child, name, color, title)
     local Highlight = Instance.new("Highlight") do
     Highlight.Parent = child
     Highlight.Adornee = child
-    Highlight.FillTransparency = 0.65
-    Highlight.OutlineTransparency = 0
+    Highlight.FillTransparency = _G.Fill
+    Highlight.OutlineTransparency = _G.Outline
     Highlight.Enabled = _G.Highlight
     Highlight.Name = title
     Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
@@ -142,6 +100,33 @@ child.Color = Color3.new(0,0,0)
 child.Transparency = 0
 end		
 end
+end
+local function CylinderESP(child, name, color, title)
+Billboard(child, name, color, title)
+local Adornment = Instance.new("CylinderHandleAdornment")
+Adornment.Height = child.Size.Y * 2
+Adornment.Radius = child.Size.X * 0.75
+Adornment.CFrame = CFrame.new(0,0,0) * CFrame.Angles(math.rad(90), 0, 0)
+Adornment.Color3 = color
+Adornment.Transparency = 0.6
+Adornment.AlwaysOnTop = true
+Adornment.ZIndex = 10
+Adornment.Adornee = child
+Adornment.Name = title
+Adornment.Parent = child
+end
+local function SphereESP(child, name, color, title)
+Billboard(child, name, color, title)
+local Adornment = Instance.new("SphereHandleAdornment", child)
+Adornment.Radius = child.Size.X * 1.085
+Adornment.CFrame = CFrame.new() * CFrame.Angles(math.rad(90), 0, 0)
+Adornment.Color3 = color
+Adornment.Transparency = 0.6
+Adornment.AlwaysOnTop = true
+Adornment.ZIndex = 10
+Adornment.Adornee = child
+Adornment.Name = title
+Adornment.Parent = child
 end
 function Distance(part, extra)
 	if not extra then extra = 15 end
@@ -170,10 +155,7 @@ local Window = lib:CreateWindow({
     MenuFadeTime = 0
 })
 function notify(name, timer)
-local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
-local library =   loadstring(game:HttpGet(repo.. 'Library.lua'))()
-local savetheme =  loadstring(game:HttpGet(repo.. 'addons/SaveManager.lua'))()
-local thememanager = loadstring(game:HttpGet(repo.. 'addons/ThemeManager.lua'))()	
+local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/Library.lua'))()
 library:Notify(name, timer)
 end
 local Tabs = {
@@ -625,72 +607,71 @@ Group.Right3:AddToggle('',{
 if value then
                 
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "RushMoving" then
-Highlight2(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
-elseif v.Name == "AmbushMoving" then
-Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
+if v.Name == "RushNew" and v.Parent.Name == "RushMoving" then
+CylinderESP(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
+elseif v.Name == "RushNew" and v.Parent.Name == "AmbushMoving" then
+CylinderESP(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
 elseif v.Name == "Handle" and v.Parent.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
+CylinderESP(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
 Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")
 elseif v.Name == "BackdoorRush" then
-Highlight2(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
+CylinderESP(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
 elseif v.Name == "BackdoorLookman" then
-Highlight2(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
+CylinderESP(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
 elseif v.Name == "FigureRagdoll" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 255, 100), "SHMFigureESP")
-elseif v.Name == "JeffTheKiller" then
-Highlight2(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
+elseif v.Name == "HumanoidRootPart" and v.Parent.Name == "JeffTheKiller" then
+CylinderESP(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
 elseif v.Name == "Snare" then
 Highlight2(v, "Snare", Color3.fromRGB(255), "SnareESP")	
 elseif v.Name == "SeekMoving" then
 Highlight2(v, "Seek", Color3.fromRGB(50,50,50), "SeekESP")
 elseif v.Name == "A60" then
-Highlight2(v, "A60", Color3.fromRGB(255), "A60ESP")
+CylinderESP(v, "A60", Color3.fromRGB(255), "A60ESP")
 elseif v.Name == "A120" then
-Highlight2(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
+CylinderESP(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
 elseif v.Name == "Core" and v.Parent.Name == "Eyes" then
-Highlight2(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
+SphereESP(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
 elseif v.Name == "ClosetSpace" then
 Highlight2(v, "Vacuum", Color3.fromRGB(255,255,255), "VacuumESP")						
 end
 end
 ESP8 = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-                        
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "RushMoving" then
-Highlight2(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
-elseif v.Name == "AmbushMoving" then
-Highlight2(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
+if v.Name == "RushNew" and v.Parent.Name == "RushMoving" then
+CylinderESP(v, "Rush", Color3.fromRGB(50,50,50), "RushESP")
+elseif v.Name == "RushNew" and v.Parent.Name == "AmbushMoving" then
+CylinderESP(v, "Ambush", Color3.fromRGB(0,255,0), "AmbushESP")
 elseif v.Name == "FigureRig" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 60, 60), "FigureESP")
 elseif v.Name == "Handle" and v.Parent.Name == "GiggleCeiling" then
-Highlight2(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
+CylinderESP(v, "Giggle", Color3.fromRGB(255,0,0), "TrapGiggleESP")
 elseif v.Name == "SeekMovingNewClone" then
 Highlight2(v, "Seek", Color3.fromRGB(30,30,30), "SeekESP")
 elseif v.Name == "BackdoorRush" then
-Highlight2(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
+CylinderESP(v, "Blitz", Color3.fromRGB(0,180,0), "BDRushESP")
 elseif v.Name == "BackdoorLookman" then
-Highlight2(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
+CylinderESP(v, "Lookman", Color3.fromRGB(50,50,50), "BDLookmanESP")
 elseif v.Name == "FigureRagdoll" then
 Highlight2(v, "Figure", Color3.fromRGB(255, 255, 100), "SHMFigureESP")
-elseif v.Name == "JeffTheKiller" then
-Highlight2(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
+elseif v.Name == "HumanoidRootPart" and v.Parent.Name == "JeffTheKiller" then
+CylinderESP(v, "Jeff", Color3.fromRGB(255,255,255), "JTKESP")
 elseif v.Name == "Snare" then
 Highlight2(v, "Snare", Color3.fromRGB(255), "SnareESP")	
 elseif v.Name == "SeekMoving" then
 Highlight2(v, "Seek", Color3.fromRGB(50,50,50), "SeekESP")
 elseif v.Name == "A60" then
-Highlight2(v, "A60", Color3.fromRGB(255), "A60ESP")
+CylinderESP(v, "A60", Color3.fromRGB(255), "A60ESP")
 elseif v.Name == "A120" then
-Highlight2(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
+CylinderESP(v, "A120", Color3.fromRGB(50,50,50), "A120ESP")
 elseif v.Name == "Core" and v.Parent.Name == "Eyes" then
-Highlight2(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
+SphereESP(v, "Eyes", Color3.fromRGB(0,0,255), "EyesESP")
 elseif v.Name == "ClosetSpace" then
-Highlight2(v, "Vacuum", Color3.fromRGB(255,255,255), "VacuumESP")
-end						
+Highlight2(v, "Vacuum", Color3.fromRGB(255,255,255), "VacuumESP")						
+end
 end
 end)
 else
@@ -726,18 +707,18 @@ end
 end
 end 
 end})
+
+_G.Highlight = true
 Group.Right3:AddToggle('',{
     Text = "Highlight", 
     Default = true,
     Callback = function(value)
 _G.Highlight = value
-end})
-Group.Right3:AddButton({
-Text = "Tracers",
-DoubleClick = true,
-Func = function()
-tracers = true
-end})			
+end})	
+_G.Fill = 0.5
+Group.Right4:AddSlider("",{Text="Fill Transparency",Default=0.5,Min=0,Max=1,Rounding=1,Compact=true,Callback=function(value)_G.Fill = value;end});
+_G.Outline = 0
+Group.Right4:AddSlider("",{Text="Outline Transparency",Default=0,Min=0,Max=1,Rounding=1,Compact=true,Callback=function(value)_G.Outline = value;end});
 game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v89)local v90=0 -0 ;while true do if (v90==(0 + 0)) then if  not _G.InstantInteract then return;end if v89.IsA(v89,"ProximityPrompt") then if _G.InstantInteract then local v622=0 + 0 ;while true do if (v622==(0 + 0)) then v89.HoldDuration=0 + 0 ;v89.Enabled=true;break;end end end end break;end end end);Group.Left5:AddToggle("MyToggle",{Text="No Hold In Hotel And Rooms",Default=false,Tooltip="Fast E",Callback=function(v91)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();local v92=0 -0 ;while true do if (v92==(0 -0)) then _G.InstantInteract=v91;if (_G.InstantInteract==true) then for v519,v520 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if v520:IsA("ProximityPrompt") then v520.HoldDuration=0 + 0 ;v520.Enabled=true;end end end break;end end end});
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.IncreasedDoors then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door").ClientOpen:FireServer();end end);end);Group.Left5:AddToggle("MyToggle",{Text="Opening Door Far",Default=false,Tooltip="Door Opening Far",Callback=function(v103)local v171=Instance.new("Sound");v171.Parent=game.SoundService;v171.SoundId="rbxassetid://4590657391";v171.Volume=11 -6 ;v171.PlayOnRemove=true;v171:Destroy();_G.IncreasedDoors=v103;end})
 if _G.Admin then	
